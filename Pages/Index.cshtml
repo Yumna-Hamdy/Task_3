@@ -1,0 +1,26 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "RSS Reader";
+}
+
+<h1>RSS Reader</h1>
+
+@if (Model.RssItems != null)
+{
+    <div class="rss-container">
+        @foreach (var item in Model.RssItems)
+        {
+            <div class="rss-item">
+                <h2>@item.Title</h2>
+                <p>@Html.Raw(item.Description)</p>
+                <p>Published: @item.PubDate.ToString("yyyy-MM-dd HH:mm:ss")</p>
+                <a href="@item.Link" target="_blank">Read More</a>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p>Failed to retrieve RSS feed.</p>
+}
